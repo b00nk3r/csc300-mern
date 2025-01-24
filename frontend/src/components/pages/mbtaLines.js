@@ -19,7 +19,8 @@ function Lines() {
 
 
   return (
-    <div>
+    <div className="d-flex flex-wrap">
+      <h1 className="w-100 text-center my-4">MBTA Lines</h1>
       {lines.map(line => (
         <Card
         body
@@ -27,24 +28,26 @@ function Lines() {
         color="success"
         className="mx-1 my-2"
         style={{ 
-          width: "30rem"
+          width: "18rem",
+          height: "14rem",
+          borderColor: `#${line.attributes.color}`,
+          backgroundColor: `#${line.attributes.color}20`
         }}
       >
-        <Card.Body>
-        <Card.Title>Line</Card.Title>
-        <Card.Text>{line.attributes.long_name}{line.attributes.short_name}</Card.Text>
+        <Card.Body className="d-flex justify-content-center align-items-center h-100">
+          <Card.Text className="text-center">
+            {line.attributes.short_name ? (
+              <>
+                <strong>Line {line.attributes.short_name}</strong>: {line.attributes.long_name}
+              </>
+            ) : (
+              line.attributes.long_name
+            )}
+          </Card.Text>
         </Card.Body>
       </Card>
       ))}
 
-
-        <h1>Lines!</h1>
-      {lines.map(line => (
-        <div key={line.id}>
-          <h3>{line.attributes.long_name}</h3>
-          <p>{line.attributes.short_name}</p>
-        </div>
-      ))}
     </div>
   );
 }
